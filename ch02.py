@@ -94,7 +94,7 @@ The following provides an example of the autoregressive text generation of LLMs
  """
 promt ="Explain large language models."
 input_token_ids_list = tokenizer.encode(prompt)
-print(f"Number of input tokens: {len(input_token_ids_list)}")
+#print(f"Number of input tokens: {len(input_token_ids_list)}")
 
 input_tensore = torch.tensor(input_token_ids_list) # convert python list into PyTorch tensore
 input_tensore_fmt = input_tensore.unsqueeze(0).to(device) # Add an additional dimension.
@@ -272,6 +272,8 @@ For understanding and loading KV cache see: https://magazine.sebastianraschka.co
 
  """
 
+
+""" 
 major, minor = map(int, torch.__version__.split(".")[:2])
 if (major, minor) >= (2, 8):
     # This avoids retriggering model recompilations 
@@ -280,7 +282,9 @@ if (major, minor) >= (2, 8):
     torch._dynamo.config.allow_unspec_int_on_nn_module = True
 
 model_compiled = torch.compile(model)
+ """
 
+""" 
 for i in range(3):
 
     start_time = time.time()
@@ -315,7 +319,7 @@ for i in range(3):
 
     print(f"\n{30*'-'}\n")
 
-
+ """
 
 
 
