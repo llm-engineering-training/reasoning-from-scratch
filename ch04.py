@@ -28,11 +28,15 @@ from ch03 import(
 )
 from reasoning_from_scratch.qwen3 import KVCache
 device = get_device()
+
+""" 
 model, tokenizer = load_model_and_tokenizer(
     which_model="base",
     device=device,
     use_compile=False,
 )
+ """
+
 
 raw_prompt = (
     "Half the value of $3x-9$ is $x+37$. "
@@ -152,10 +156,13 @@ Below we illustrate the steps the model takes to generate the answer
 Output: tensor([[ 785, 6722,  315, 9856,  374]])
  """
 
+""" 
 
 input_token_ids = torch.tensor(
     tokenizer.encode(ex_prompt), device=device
 ).unsqueeze(0)
+
+ """
 
 #print(input_token_ids)
 
@@ -171,9 +178,11 @@ the tokenizer can handle and the LLM can generate
  """
 
 
-
+""" 
 with torch.inference_mode():
     next_token_logits = model(input_token_ids)[:,-1]
+
+ """
 
 """ 
 #Output: torch.Size([1, 151936])
@@ -186,8 +195,11 @@ In the following we still need the next_token_logits property
 """ 
 3) we find the vocabulary index associated with the largest score
  """
+""" 
 
 max_token_id = torch.argmax(next_token_logits)
+
+ """
 #print(f"Token ID: {max_token_id}")
 #print(f"Decoded token: '{tokenizer.decode([max_token_id])}'")
 
@@ -301,10 +313,13 @@ Next we want to be able to convert the rescaled logits into probability scores
 Converting rescaled logits into probability scores can be done with torch.softmax
 (4.6)
  """
+
+""" 
 rescaled_logits = scale_logits_by_temperature(next_token_logits, 5.0)
 next_token_probas = torch.softmax(
     rescaled_logits, dim=-1
 )
+ """
 
 """ 
 plot_scores_bar(
@@ -387,9 +402,13 @@ All are nonsense tokens in the context of our prompt which is
 we used was too high
 
  """
+
+""" 
 probas_lowT =  torch.softmax(
     scale_logits_by_temperature(next_token_logits, 0.35), dim=-1
 )
+
+ """
 
 """ end 07-04-2026 Uncomment below to generate the results discussed in the comment-block below """
 #count_samples(probas_lowT, tokenizer=tokenizer)
@@ -772,6 +791,8 @@ The long answer can be accessed with: print(results["full_answers"][0])
 Now when we ask the model to explain step by step and generate longer responses with the following call
 """
 
+""" 
+
 results = self_consistency_vote(
     model,
     tokenizer,
@@ -784,6 +805,9 @@ results = self_consistency_vote(
     seed=123,
     show_progress=True,
 )
+
+ """
+
 """
 Out put this time with chain-of-thought 
 [Sample 1/5] -> '83'
@@ -793,6 +817,6 @@ Out put this time with chain-of-thought
 [Sample 5/5] -> '3'
 git push origin HEAD:main
 """
-
+""" end 07-15-2026 """
 
 
