@@ -217,3 +217,13 @@ __marimo__/
 # Streamlit
 .streamlit/secrets.toml
 qwen3/
+qwen3-0.6B-rlvr-grpo-step00005.pth
+qwen3-0.6B-rlvr-grpo-step00010.pth
+qwen3-0.6B-rlvr-grpo-step00015.pth
+qwen3-0.6B-rlvr-grpo-step00020.pth
+qwen3-0.6B-rlvr-grpo-step00025.pth
+qwen3-0.6B-rlvr-grpo-step00030.pth
+qwen3-0.6B-rlvr-grpo-step00035.pth
+qwen3-0.6B-rlvr-grpo-step00040.pth
+qwen3-0.6B-rlvr-grpo-step00045.pth
+qwen3-0.6B-rlvr-grpo-step00050.pth

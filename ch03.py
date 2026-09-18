@@ -50,7 +50,10 @@ to load the reasoning version we change as follows:
 WHICH_MODEL = "reasoning" 
  """
 WHICH_MODEL = "base"
+
+""" 
 device = get_device()
+ """
 """ Regular expression for extracting numeric values from text  """
 RE_NUMBER = re.compile(
     r"-?(?:\d+/\d+|\d+(?:\.\d+)?(?:[eE][+-]?\d+)?)"
@@ -113,13 +116,13 @@ def load_model_and_tokenizer(
     return model, tokenizer
 
 #print(device)
-
+""" 
 model, tokenizer = load_model_and_tokenizer(
     which_model=WHICH_MODEL,
     device=device,
     use_compile=False
 )
-
+ """
 prompt = (
     r"If $a+b=3$ and $ab=\tfrac{13}{6}$, "
     r"what is the value of $a^2+b^2$?"
@@ -128,11 +131,13 @@ prompt = (
 """ 
 Below is exactly as we did in Ch02 on line 185
  """
+""" 
 input_token_ids_tensor = torch.tensor(
     tokenizer.encode(prompt),
     device=device
 ).unsqueeze(0)
 
+ """
 """ 
 Moved code below into generate_text_stream_concat()
 all_token_ids = []
